@@ -1,0 +1,3 @@
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+export async function createSupabaseServerClient(){const url=process.env.NEXT_PUBLIC_SUPABASE_URL;const key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;if(!url||!key)throw new Error("Supabase is not configured. Set the project URL and publishable key.");const store=await cookies();return createServerClient(url,key,{cookies:{getAll:()=>store.getAll(),setAll:(items)=>{try{items.forEach(({name,value,options})=>store.set(name,value,options));}catch{/* Session refresh is handled by middleware. */}}}});}
