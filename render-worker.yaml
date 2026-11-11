@@ -1,0 +1,26 @@
+# Echoley™ video-processing worker
+# Secrets marked sync:false must be entered in the Render service Environment page.
+services:
+  - type: worker
+    name: echoley-worker
+    runtime: docker
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    dockerfilePath: apps/worker/Dockerfile
+    dockerContext: .
+    plan: starter
+    region: frankfurt
+    autoDeploy: true
+    envVars:
+      - key: SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SOURCE_BUCKET
+        value: echoley-sources
+      - key: RENDER_BUCKET
+        value: echoley-renders
+      - key: MAX_VIDEO_BYTES
+        value: "10737418240"
