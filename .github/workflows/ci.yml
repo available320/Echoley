@@ -1,0 +1,27 @@
+name: Echoley CI
+on:
+  pull_request:
+  push:
+    branches: [main, build/platform-foundation]
+jobs:
+  web-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm --filter @echoley/web typecheck
+  worker-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: cd apps/worker && npm install && npm run typecheck
