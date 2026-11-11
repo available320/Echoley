@@ -1,0 +1,1 @@
+{"name":"echoley-platform","private":true,"version":"0.1.0","packageManager":"pnpm@9.15.5","scripts":{"dev:web":"pnpm --filter @echoley/web dev","build:web":"pnpm --filter @echoley/web build","typecheck":"pnpm -r typecheck"}}
