@@ -44,7 +44,8 @@ export default function Home() {
           <h1>Turn long videos<br/>into <em>clips people<br/>can’t scroll past.</em></h1>
           <p>Upload a video to your creator workspace. Echoley’s processing foundation is in place; AI highlights, editing and exports are being brought online.</p>
           <Link className="lime-button hero-start" href="/login">Open your creator workspace</Link>
-          <small className="hero-note">Create an account, start a project and upload a source video. Automated processing is not active yet.</small>
+          <Link className="outline-button" href="/login?next=%2Fdashboard#url-import" style={{display:"inline-flex",marginTop:10}}>Have a video URL? Import it in your workspace ↗</Link>
+          <small className="hero-note">Upload a file or paste a public video URL inside a project. YouTube/TikTok links currently save a preview; automated URL downloading is not enabled. Uploaded files can be processed once the worker is deployed and configured.</small>
         </div>
         <div className="phone-wrap" aria-label="Preview of a vertical video clip">
           <div className="phone-status"><i/> your video · 00:12 / 01:37</div>
