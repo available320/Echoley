@@ -47,10 +47,10 @@ export default function UrlImporter({ projectId }: { projectId: string }) {
   }
 
   return (
-    <section style={{ marginTop: 14, padding: 14, border: "1px solid var(--line)", borderRadius: 12 }}>
+    <section id="url-import" style={{ marginTop: 14, padding: 14, border: "1px solid var(--line)", borderRadius: 12 }}>
       <h4 style={{ margin: "0 0 6px" }}>Add a video using a URL</h4>
       <p className="muted" style={{ margin: "0 0 12px", fontSize: 13 }}>
-        Paste a public YouTube or TikTok link, or a direct MP4, MOV or WebM link.
+        Paste a public YouTube or TikTok link, or a direct MP4, MOV or WebM link. The link is saved to this project for reference.
       </p>
       <form onSubmit={addLink} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <input
@@ -71,7 +71,7 @@ export default function UrlImporter({ projectId }: { projectId: string }) {
         </button>
       </form>
       <p className="muted" style={{ margin: "10px 0 0", fontSize: 12 }}>
-        Link support is currently a preview/registration step. The video is not downloaded or processed yet; the worker and any required platform authorization must be enabled first.
+        Important: YouTube/TikTok links currently provide metadata previews only. Direct video URL downloading and processing are not enabled yet. Uploaded video files are the supported processing input; social-platform imports require approved provider access.
       </p>
       {message && (
         <p role="status" aria-live="polite" style={{ margin: "10px 0 0", fontSize: 13, color: kind === "error" ? "#ff9b9b" : kind === "success" ? "#b8f28a" : "inherit" }}>
