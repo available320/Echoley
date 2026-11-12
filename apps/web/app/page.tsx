@@ -8,8 +8,8 @@ const features = [
   ["◎", "Speaker-tracking reframe", "Prepare 9:16, 1:1 and 16:9 compositions for different platforms."],
   ["≋", "Word-by-word captions", "Style and refine captions so every clip is clear, readable and on-brand."],
   ["▣", "One-click templates", "Start with creator-inspired layouts, split screens, zooms and progress bars."],
-  ["⌗", "Real timeline editor", "A focused editing workspace for trimming, splitting, captions, music and overlays."],
-  ["⇩", "Stock library and export", "Bring your creative assets together and prepare polished downloadable clips."]
+  ["⌗", "Timeline editor", "Planned editing tools for trimming, splitting, captions, music and overlays."],
+  ["⇩", "Media library and export", "Planned asset organisation and downloadable clip exports."]
 ];
 
 const templates = [
@@ -42,13 +42,9 @@ export default function Home() {
         <div className="hero-copy">
           <span className="outline-pill">AI clipping for creators</span>
           <h1>Turn long videos<br/>into <em>clips people<br/>can’t scroll past.</em></h1>
-          <p>Paste a link or upload a video. Echoley finds the moments worth sharing, reframes them to vertical, and helps you shape edit-ready clips.</p>
-          <form className="hero-input" action="/login">
-            <label className="sr-only" htmlFor="hero-link">Video link</label>
-            <input id="hero-link" name="source" placeholder="Paste a YouTube or Twitch link" />
-            <button className="lime-button" type="submit">Get my clips</button>
-          </form>
-          <small className="hero-note">Start with the free creator workspace. Processing features are being brought online.</small>
+          <p>Upload a video to your creator workspace. Echoley’s processing foundation is in place; AI highlights, editing and exports are being brought online.</p>
+          <Link className="lime-button hero-start" href="/login">Open your creator workspace</Link>
+          <small className="hero-note">Create an account, start a project and upload a source video. Automated processing is not active yet.</small>
         </div>
         <div className="phone-wrap" aria-label="Preview of a vertical video clip">
           <div className="phone-status"><i/> your video · 00:12 / 01:37</div>
@@ -62,9 +58,9 @@ export default function Home() {
       <section id="how" className="landing-section">
         <div className="section-kicker">How it works</div><h2>From link to finished clip in three steps</h2>
         <div className="steps-grid">
-          <article className="dark-card"><b className="step-number">1</b><h3>Paste a link or upload</h3><p>Drop in a supported video URL or upload a video file to start a project.</p></article>
-          <article className="dark-card"><b className="step-number">2</b><h3>AI picks the best moments</h3><p>Transcription and highlight analysis help surface moments worth reviewing.</p></article>
-          <article className="dark-card"><b className="step-number">3</b><h3>Edit, style and export</h3><p>Refine the clip, captions and layout, then export when processing is enabled.</p></article>
+          <article className="dark-card"><b className="step-number">1</b><h3>Create a project and upload</h3><p>Start a project in your workspace and upload the original video file securely.</p></article>
+          <article className="dark-card"><b className="step-number">2</b><h3>AI finds the best moments</h3><p>Once the background worker is deployed and configured, transcription and highlight analysis will surface moments to review.</p></article>
+          <article className="dark-card"><b className="step-number">3</b><h3>Review and export</h3><p>Review suggested clips now; the full editing timeline and reliable exports are still in development.</p></article>
         </div>
       </section>
 
@@ -75,7 +71,7 @@ export default function Home() {
 
       <section id="templates" className="landing-section">
         <div className="section-kicker">Templates</div><h2>Start from a look that already works</h2>
-        <p className="section-intro">A collection of creator-style starting points for layouts, captions, zooms and visual rhythm.</p>
+        <p className="section-intro">Planned creator-style starting points for layouts, captions, zooms and visual rhythm.</p>
         <div className="template-grid">{templates.map(([name,kind]) => <div className="template-item" key={name}><div className={"template-preview " + kind}><span/><i/><b/></div><span>{name}</span></div>)}</div>
       </section>
 
