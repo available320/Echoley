@@ -21,3 +21,14 @@ test("validates clip ranges against source duration", () => {
   assert.throws(() => validateClipInterval(10, 10, 30));
   assert.throws(() => validateClipInterval(10, 31, 30));
 });
+test("accepts only supported HTTPS video URL providers and direct media paths", async () => {
+  const { validateVideoUrl, validateAspectRatio } = await import("./validation.js");
+  assert.equal(validateVideoUrl("https://youtu.be/abc123").hostname, "youtu.be");
+  assert.equal(validateVideoUrl("https://cdn.example.com/video.mp4?token=abc").pathname, "/video.mp4");
+  assert.throws(() => validateVideoUrl("http://youtube.com/watch?v=abc"));
+  assert.throws(() => validateVideoUrl("https://youtube.com.evil.example/watch?v=abc"));
+  assert.throws(() => validateVideoUrl("https://user:pass@youtube.com/watch?v=abc"));
+  assert.throws(() => validateVideoUrl("https://127.0.0.1/video.mp4"));
+  assert.equal(validateAspectRatio("9:16"), "9:16");
+  assert.throws(() => validateAspectRatio("3:2"));
+});
