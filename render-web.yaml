@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: echoley-web
+    runtime: node
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install --no-frozen-lockfile && pnpm --filter @echoley/web build
+    startCommand: pnpm --filter @echoley/web start
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+  - type: web
+    name: echoley-studio
+    runtime: node
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install --no-frozen-lockfile && pnpm --filter @echoley/web build
+    startCommand: pnpm --filter @echoley/web start
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false
