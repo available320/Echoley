@@ -1,3 +1,5 @@
+import { isIP } from "node:net";
+
 export function assertOwnedStoragePath(ownerId: string, projectId: string, storagePath: string): void {
   const prefix = `${ownerId}/${projectId}/`;
   const parts = storagePath.split("/");
@@ -31,7 +33,14 @@ export function validateVideoUrl(value: unknown): URL {
   let url: URL;
   try { url = new URL(value); } catch { throw new Error("Video URL is invalid."); }
   if (url.protocol !== "https:" || url.username || url.password) throw new Error("Video URL must use HTTPS and must not contain embedded credentials.");
+
   const host = url.hostname.toLowerCase().replace(/^www\./, "");
+  // Do not permit IP literals or local hostnames as direct-media sources.
+  // The downloader must also re-check resolved DNS addresses and redirects.
+  if (isIP(host) !== 0 || host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local")) {
+    throw new Error("Video URL host must be a public DNS hostname.");
+  }
+
   const allowed = host === "youtube.com" || host === "youtu.be" || host === "m.youtube.com" ||
     host === "tiktok.com" || host.endsWith(".tiktok.com") ||
     host === "instagram.com" || host.endsWith(".instagram.com") ||
