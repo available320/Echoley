@@ -47,4 +47,5 @@ jobs:
           node-version: 22
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm --filter @echoley/mobile typecheck
-      - run: pnpm --filter @echoley/mobile exec expo export --platform all --output-dir .expo-ci-export
+      - run: pnpm --filter @echoley/mobile exec expo export --platform ios --output-dir .expo-ci-export-ios
+      - run: pnpm --filter @echoley/mobile exec expo export --platform android --output-dir .expo-ci-export-android
