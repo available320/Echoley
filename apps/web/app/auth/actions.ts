@@ -2,25 +2,32 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
+function safeNextPath(value: FormDataEntryValue | null): string {
+  const path = typeof value === "string" ? value : "";
+  return path.startsWith("/") && !path.startsWith("//") ? path : "/dashboard";
+}
+
 export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const next = safeNextPath(formData.get("next"));
   if (!email || !password) redirect("/login?error=Enter%20your%20email%20and%20password");
   const sb = await createSupabaseServerClient();
   const { error } = await sb.auth.signInWithPassword({ email, password });
   if (error) redirect("/login?error=" + encodeURIComponent(error.message));
-  redirect("/dashboard");
+  redirect(next);
 }
 
 export async function signUp(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const next = safeNextPath(formData.get("next"));
   if (!email || password.length < 10) redirect("/login?error=Use%20a%20valid%20email%20and%20a%20password%20of%20at%20least%2010%20characters");
   const sb = await createSupabaseServerClient();
   const { data, error } = await sb.auth.signUp({ email, password });
   if (error) redirect("/login?error=" + encodeURIComponent(error.message));
   if (!data.session) redirect("/login?message=Check%20your%20email%20to%20confirm%20your%20account");
-  redirect("/dashboard");
+  redirect(next);
 }
 
 export async function requestPasswordReset(formData: FormData) {
