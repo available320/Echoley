@@ -4,7 +4,7 @@ import { signIn, signUp, requestPasswordReset } from "@/app/auth/actions";
 export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string; message?: string }> }) {
   const p = await searchParams;
   return <main className="shell">
-    <nav className="nav"><Link className="brand" href="/">echo<span>ley</span>™</Link><Link className="navlinks" href="/">Back to home</Link></nav>
+    <nav className="nav"><Link className="brand" href="/">Echoley™</Link><Link className="navlinks" href="/">Back to home</Link></nav>
     <section className="form panel">
       <div className="eyebrow">Welcome to the studio</div>
       <h1 style={{fontFamily:"Space Grotesk",fontSize:34}}>Sign in or create an account</h1>
