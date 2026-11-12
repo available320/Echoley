@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const supabase = createServerClient(projectUrl, publishableKey, {
       cookies: {
         getAll: () => request.cookies.getAll(),
-        setAll: (cookies) => cookies.forEach(({ name, value, options }) => response.cookies.set(name, value, options)),
+        setAll: (cookies: { name: string; value: string; options?: CookieOptions }[]) => cookies.forEach(({ name, value, options }) => response.cookies.set(name, value, options)),
       },
     });
     const { error } = await supabase.auth.exchangeCodeForSession(code);
