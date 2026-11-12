@@ -4,7 +4,7 @@
 - [x] Version the Edge Function source in this repository.
 - [x] Add web build/typecheck, worker typecheck and mobile typecheck CI jobs.
 - [x] Connect dashboard to source media and suggested clip review.
-- [ ] Run CI and fix all failures.
+- [x] Run CI and fix all failures (web build, worker typecheck, mobile typecheck and Expo export pass on the foundation branch).
 - [ ] Add automated tests for API authorization/idempotency and worker queue retry/render behavior.
 - [ ] Recover the original six missing migration source files; do not reconstruct historical SQL from live state or memory.
 - [ ] Reconcile migration history and prove a clean development bootstrap.
