@@ -165,6 +165,13 @@ Deno.serve(async (req: Request) => {
         }
         throw error;
       }
+      if (jobType === "render" && clipId) {
+        const { error: clipUpdateError } = await userClient.from("clips").update({ status: "rendering" }).eq("id", clipId);
+        if (clipUpdateError) {
+          await admin.from("processing_jobs").delete().eq("id", job.id).eq("owner_id", userId);
+          throw clipUpdateError;
+        }
+      }
       return respond({ job, dispatch_status: "queued_worker_required", message: "Your job is safely queued. It will start when the Echoley worker is running." }, 202);
     }
 
