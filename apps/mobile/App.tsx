@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {ActivityIndicator,Alert,AppState,Button,FlatList,SafeAreaView,Text,TextInput,View,StyleSheet} from "react-native";
 import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from "expo-file-system/legacy";
+import * as FileSystem from "expo-file-system";
 import {StatusBar} from "expo-status-bar";
 import {supabase} from "./src/supabase";
 type Project={id:string;name:string;status:string};
