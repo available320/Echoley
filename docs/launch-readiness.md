@@ -1,15 +1,25 @@
 # Launch readiness
-- [ ] Configure and test email verification, password reset and leaked-password protection.
-- [ ] Verify RLS owner policies for every table and private storage operation.
-- [ ] Implement resumable uploads and cleanup.
-- [ ] Implement durable job claiming, retries, idempotency and cancellation.
-- [ ] Deploy worker with FFmpeg and verify real output.
-- [ ] Configure transcription/highlight provider and cost limits.
-- [ ] Add unit, integration, browser and mobile end-to-end tests.
-- [ ] Add observability, alerts, backups and recovery tests.
-- [ ] Select billing provider after merchant eligibility and webhook verification.
-- [ ] Publish privacy, terms, copyright and retention policies.
-- [ ] Complete mobile deep links, signing and app store compliance.
-- [ ] Verify domain, TLS, production secrets and rollback.
 
-Never commit real credentials. Missing provider keys must fail clearly, not simulate success.
+## Repository and code
+- [x] Version the Edge Function source in this repository.
+- [x] Add web build/typecheck, worker typecheck and mobile typecheck CI jobs.
+- [x] Connect dashboard to source media and suggested clip review.
+- [ ] Run CI and fix all failures.
+- [ ] Add automated tests for API authorization/idempotency and worker queue retry/render behavior.
+- [ ] Recover the original six missing migration source files; do not reconstruct historical SQL from live state or memory.
+- [ ] Reconcile migration history and prove a clean development bootstrap.
+- [ ] Add resumable uploads, quota enforcement and orphan cleanup.
+- [ ] Complete editor timeline, captions, crop/reframe and export controls.
+
+## External operations — separate approval required
+- [ ] Configure and test email verification, password reset and leaked-password protection.
+- [ ] Verify RLS and private storage behavior with real user accounts.
+- [ ] Configure worker service and server-only Supabase/OpenAI credentials.
+- [ ] Run a real video through upload → queue → transcription → highlights → render → private download.
+- [ ] Add provider cost controls, observability, alerts, backups and recovery tests.
+- [ ] Choose billing provider after merchant eligibility; implement verified webhooks and entitlements.
+- [ ] Publish privacy, terms, copyright and retention policies.
+- [ ] Complete mobile deep links, signing, physical-device testing and app-store compliance.
+- [ ] Verify domain, TLS, production secrets, rollback and support operations.
+
+Never commit real credentials. Do not represent a successful build as proof that production video processing, billing or app-store release is ready.
