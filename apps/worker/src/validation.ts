@@ -31,12 +31,12 @@ export function validateVideoUrl(value: unknown): URL {
   let url: URL;
   try { url = new URL(value); } catch { throw new Error("Video URL is invalid."); }
   if (url.protocol !== "https:" || url.username || url.password) throw new Error("Video URL must use HTTPS and must not contain embedded credentials.");
-  const host = url.hostname.toLowerCase().replace(/^www\\./, "");
+  const host = url.hostname.toLowerCase().replace(/^www\./, "");
   const allowed = host === "youtube.com" || host === "youtu.be" || host === "m.youtube.com" ||
     host === "tiktok.com" || host.endsWith(".tiktok.com") ||
     host === "instagram.com" || host.endsWith(".instagram.com") ||
     host === "facebook.com" || host.endsWith(".facebook.com") || host === "fb.watch";
-  const direct = /\\.(mp4|mov|webm|m4v)$/i.test(url.pathname);
+  const direct = /\.(mp4|mov|webm|m4v)$/i.test(url.pathname);
   if (!allowed && !direct) throw new Error("Unsupported video URL host or file type.");
   return url;
 }
