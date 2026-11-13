@@ -1,0 +1,57 @@
+# Echoley™ Render services. Existing web services are adopted; the worker is a paid background process.
+services:
+  - type: web
+    name: echoley-web
+    runtime: node
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install --no-frozen-lockfile && pnpm --filter @echoley/web build
+    startCommand: pnpm --filter @echoley/web start
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+
+  - type: web
+    name: echoley-studio
+    runtime: node
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install --no-frozen-lockfile && pnpm --filter @echoley/web build
+    startCommand: pnpm --filter @echoley/web start
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+
+  - type: worker
+    name: echoley-worker
+    runtime: docker
+    repo: https://github.com/available320/Echoley
+    branch: build/platform-foundation
+    dockerfilePath: apps/worker/Dockerfile
+    dockerContext: .
+    plan: starter
+    region: frankfurt
+    autoDeploy: true
+    envVars:
+      - key: SUPABASE_URL
+        value: https://bnbzupburfbeoabccshf.supabase.co
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SOURCE_BUCKET
+        value: echoley-sources
+      - key: RENDER_BUCKET
+        value: echoley-renders
+      - key: MAX_VIDEO_BYTES
+        value: "10737418240"

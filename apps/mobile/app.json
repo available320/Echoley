@@ -1,0 +1,1 @@
+{"expo":{"name":"Echoley","slug":"echoley","scheme":"echoley","version":"1.0.0","orientation":"portrait","userInterfaceStyle":"dark","splash":{"backgroundColor":"#090b10"},"ios":{"supportsTablet":true,"bundleIdentifier":"com.echoley.app"},"android":{"package":"com.echoley.app","permissions":["READ_MEDIA_VIDEO"]},"plugins":["expo-document-picker"]}}
